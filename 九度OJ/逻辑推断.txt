@@ -1,0 +1,30 @@
+#include<stdio.h>
+#define	A	(i&1)
+#define B	!!(i&2)
+#define C	!!(i&4)
+#define D	!!(i&8)
+#define E	!!(i&16)
+#define F	!!(i&32)
+#define G	!!(i&64)
+#define H	!!(i&128)
+#define I	!!(i&256)
+#define J	!!(i&512)
+int main(){
+	int i,j,a,b;
+	for(i=0;i<1025;i++)
+		if(	(!A ||	B					)&&
+			(C 	||	!D				)&& 
+			(!A 	||	!C				)&&
+			(B	&& !D	|| !B	&& D			)&&
+			(D + E + F + G +H >1  				)&&
+			(C	&& 	G 	|| 	!C	&& !G	)&&
+			(C + E +G +I <3					)&&
+			(!E	||	F	&&	G				)&&
+			(!F	||	!G	&& 	!H				)&&
+			((I	||	J)	||	H )){
+			for(a=1,b=0;b<10;b++)
+				if(i&(a<<b))printf("%c ",'A'+b);
+			putchar('\n');
+			}
+	return 0;
+}

@@ -1,0 +1,38 @@
+#include<stdio.h> 
+int main(){
+	struct {	//½¨Á¢×Öµä 
+		char c;
+		unsigned int v;	
+	}D[7]={
+		{'I',1},
+		{'V',5},
+		{'X',10},
+		{'L',50},
+		{'C',100},
+		{'D',500},
+		{'M',1000}
+	};
+	int N;
+	int SUM;
+	char str[20];
+	int i,j,k,l,m;
+	scanf("%d",&N);
+	getchar();
+	while(N--){
+		SUM=0;
+		gets(str);
+		for(i=0;str[i];i++){
+			for(l=0;l<7;l++){
+				if(D[l].c==str[i])j=l;
+				if(D[l].c==str[i+1])k=l;
+			}
+			if(k>j){
+				SUM+=D[k].v;
+				SUM-=D[j].v;
+				i++;				
+			}else SUM+=D[j].v;
+		}
+		printf("%d\n",SUM);
+	}
+	return 0;
+}

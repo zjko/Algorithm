@@ -1,0 +1,27 @@
+/*素数就是不能再进行等分的整数。比如：7，11。而9不是素数，因为它可以平分为3等份。一般认为最小的素数是2，接着是3，5，... 
+   请问，第100002(十万零二)个素数是多少？ 请注意：2
+   是第一素数，3 是第二个素数，依此类推。 */
+   #include "stdio.h"
+   #include"conio.h"
+int main() {
+  int shusu(int x);
+  int x = 2;
+  for (int s = 0; s < 100002; x++)
+    s += shusu(x);
+    printf("%d",x);
+  return 0;
+}
+int shusu(int x) {              // 判断x是否是素数
+  int t;
+  for (t = 2; t <= x / 2; t++)
+    if (!(x % t))
+      break;
+  if (t > x / 2) {
+  	//此两行为测试代码，删除不影响结果
+    printf("%d\n", x);
+    usleep(1000000);
+    //---------------------------
+    return 1;
+  } else
+    return 0;
+}

@@ -1,0 +1,45 @@
+#include<stdio.h> 
+#include<stdlib.h>
+#define PARAGRAPH	512 
+//存储效率 99.8%
+int main(){
+	struct PN{
+		int pn[PARAGRAPH];
+		struct PN *	next;
+	}	*	p	,	*	a;
+	const int size = sizeof(struct PN);
+	int n,i,j=0,k=3;
+	int t;
+	struct PN * head = (struct PN *)calloc(1,size);
+	head->pn[0]=2;
+	p=head;
+	scanf("%d",&n);
+	for(i=1;i<n;){
+		p=head;
+		for(j=1;j<=i>>1&&k%p->pn[j%PARAGRAPH];)if(++j%PARAGRAPH==0)p=p->next;
+		if(j>i>>1){
+			for(t=i/PARAGRAPH,a=head;t--;){
+				if(a->next==0)a->next = (struct PN *)calloc(1,size);
+				a=a->next;
+			}
+		a->pn[i%PARAGRAPH]=k;			
+		//printf("%d\t%d",i,a->pn[i%512]);
+		i++;
+		}
+		k+=2;
+	}
+	for(t=i/PARAGRAPH,a=head;t--;a=a->next);
+	printf("%d\n",a->pn[(i-1)%PARAGRAPH]);
+	
+	/* 输出前n个素数 
+	for(p=head,i=0;p->pn[i];){
+		printf("%d  ",p->pn[i]);
+		i++;
+		if(i==PARAGRAPH){
+		i=0;
+		p=p->next;	
+		}
+	}
+	*/
+	return 0;
+}
